@@ -8,30 +8,22 @@
                 "facebook": {
                     name: "facebook",
                     link: "http://www.facebook.com/sharer.php?m2w&{fbParams}",
-                    width: 550,
-                    height: 440,
                     title: "Facebook"
                 },
                 "twitter": {
                     name: "twitter",
                     link: "https://twitter.com/intent/tweet?text={title}&url={url}",
-                    width: 550,
-                    height: 440,
                     title: "Twitter"
-                },
-                "google-plus": {
-                    name: "google-plus",
-                    link: "//plus.google.com/share?url={url}",
-                    width: 550,
-                    height: 440,
-                    title: "Google+"
                 },
                 "vk": {
                     name: "vk",
                     link: "//vk.com/share.php?url={url}&title={title}{vkParams}&description={description}",
-                    width: 550,
-                    height: 440,
                     title: "VK"
+                },
+                "google-plus": {
+                    name: "google-plus",
+                    link: "//plus.google.com/share?url={url}",
+                    title: "Google+"
                 },
                 "linkedin": {
                     name: "linkedin",
@@ -52,7 +44,9 @@
             wrapperTemplate: '{buttons}',
             buttonTemplate: '<a href="#" title="{title}" class="icon-{name}" onclick="{onclick}"></a>',
             onclickTemplate: "window.open('{link}','_blank','scrollbars=0,resizable=1,menubar=0,left=100,top=100,width={width},height={height},toolbar=0,status=0');return false;",
-            removeContainer: false
+            removeContainer: false,
+            windowWidth: 550,
+            windowHeight: 440
         }, o || {});
 
         return this.each(function () {
@@ -87,20 +81,23 @@
                 vkParams = '&image=' + img;
             }
 
-            var j, link, onclick;
+            var j, link, onclick, wWidth, wHeight, pTitle;
             var providers = [];
             var html = '';
 
             // sort and disable
             if (o.enabledProviders.length) {
                 for (j = 0; j < o.enabledProviders.length; j++) {
-                    if (o.providers.hasOwnProperty(o.enabledProviders[j])) {
-                        providers.push(o.providers[o.enabledProviders[j]]);
-                    }
+                    if (!o.providers.hasOwnProperty(o.enabledProviders[j])) continue;
+                    if (!o.providers[o.enabledProviders[j]].hasOwnProperty('name')) continue;
+                    if (!o.providers[o.enabledProviders[j]].hasOwnProperty('link')) continue;
+                    if (o.enabledProviders[j] != o.providers[o.enabledProviders[j]].name) continue;
+                    providers.push(o.providers[o.enabledProviders[j]]);
                 }
             } else {
                 for (j in o.providers) {
                     if (!o.providers.hasOwnProperty(j)) continue;
+                    if (!o.providers[j].hasOwnProperty('name') || !o.providers[j].hasOwnProperty('link')) continue;
                     providers.push(o.providers[j]);
                 }
             }
@@ -112,8 +109,11 @@
                     [url, title, dsc, img, fbParams, vkParams],
                     providers[j].link
                 );
-                onclick = str_replace(['{link}', '{width}', '{height}'], [link, providers[j].width, providers[j].height], o.onclickTemplate);
-                html += str_replace(['{title}', '{name}', '{onclick}'], [providers[j].title, providers[j].name, onclick], o.buttonTemplate);
+                wWidth = providers[j].hasOwnProperty('width') ? providers[j].width : o.windowWidth;
+                wHeight = providers[j].hasOwnProperty('width') ? providers[j].height : o.windowHeight;
+                pTitle = providers[j].hasOwnProperty('title') ? providers[j].title : "";
+                onclick = str_replace(['{link}', '{width}', '{height}'], [link, wWidth, wHeight], o.onclickTemplate);
+                html += str_replace(['{title}', '{name}', '{onclick}'], [pTitle, providers[j].name, onclick], o.buttonTemplate);
             }
 
             if (o.removeContainer) {
