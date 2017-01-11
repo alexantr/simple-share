@@ -53,7 +53,7 @@
             url: window.location.href.replace(window.location.hash, ''),
             title: (document.title || ''),
             image: '',
-            enabledProviders: ['facebook', 'twitter', 'vk'],
+            enabledProviders: [],
             wrapperTemplate: '{buttons}',
             buttonTemplate: '<span title="{title}" class="icon-{name}" onclick="{onclick}"></span>',
             onclickTemplate: "window.open('{link}','_blank','scrollbars=0,resizable=1,menubar=0,left=100,top=100,width={width},height={height},toolbar=0,status=0');return false;",
@@ -67,20 +67,15 @@
             var $el = $(this), options = $.extend(true, opt, dataToOptions($el));
             var j, link, onclick, wWidth, wHeight, pTitle, providers = [], html = '';
 
+            // enable default providers
+            if (!options.enabledProviders.length) {
+                options.enabledProviders = ['facebook', 'twitter', 'vk'];
+            }
+
             // sort and disable
-            if (options.enabledProviders.length) {
-                for (j = 0; j < options.enabledProviders.length; j++) {
-                    if (!options.providers.hasOwnProperty(options.enabledProviders[j])) continue;
-                    if (!options.providers[options.enabledProviders[j]].hasOwnProperty('name')) continue;
-                    if (!options.providers[options.enabledProviders[j]].hasOwnProperty('link')) continue;
-                    if (options.enabledProviders[j] != options.providers[options.enabledProviders[j]].name) continue;
+            for (j = 0; j < options.enabledProviders.length; j++) {
+                if (options.enabledProviders[j] in options.providers) {
                     providers.push(options.providers[options.enabledProviders[j]]);
-                }
-            } else {
-                for (j in options.providers) {
-                    if (!options.providers.hasOwnProperty(j)) continue;
-                    if (!options.providers[j].hasOwnProperty('name') || !options.providers[j].hasOwnProperty('link')) continue;
-                    providers.push(options.providers[j]);
                 }
             }
 
