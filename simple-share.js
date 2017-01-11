@@ -1,151 +1,141 @@
 ;(function ($) {
-    "use strict";
+    'use strict';
 
-    $.fn.simpleShare = function (o) {
+    var providers = {
+        'facebook': {
+            name: 'facebook',
+            link: 'https://www.facebook.com/sharer/sharer.php?u={url}',
+            width: 600,
+            height: 360,
+            title: 'Facebook'
+        },
+        'twitter': {
+            name: 'twitter',
+            link: 'https://twitter.com/intent/tweet?url={url}&text={title}',
+            width: 600,
+            height: 255,
+            title: 'Twitter'
+        },
+        'vk': {
+            name: 'vk',
+            link: 'https://vk.com/share.php?url={url}&title={title}',
+            width: 650,
+            height: 450,
+            title: 'VK'
+        },
+        'google-plus': {
+            name: 'google-plus',
+            link: 'https://plus.google.com/share?url={url}',
+            width: 500,
+            height: 550,
+            title: 'Google+'
+        },
+        'pinterest': {
+            name: 'pinterest',
+            link: 'https://pinterest.com/pin/create/button/?url={url}&description={title}&media={image}',
+            width: 740,
+            height: 550,
+            title: 'Pinterest'
+        },
+        'linkedin': {
+            name: 'linkedin',
+            link: 'https://www.linkedin.com/shareArticle?mini=true&url={url}&title={title}',
+            width: 600,
+            height: 400,
+            title: 'LinkedIn'
+        }
+    };
 
-        o = $.extend(true, {
-            providers: {
-                "facebook": {
-                    name: "facebook",
-                    link: "http://www.facebook.com/sharer.php?m2w&{fbParams}",
-                    title: "Facebook"
-                },
-                "twitter": {
-                    name: "twitter",
-                    link: "https://twitter.com/intent/tweet?text={title}&url={url}",
-                    title: "Twitter"
-                },
-                "vk": {
-                    name: "vk",
-                    link: "//vk.com/share.php?url={url}&title={title}{vkParams}&description={description}",
-                    title: "VK"
-                },
-                "google-plus": {
-                    name: "google-plus",
-                    link: "//plus.google.com/share?url={url}",
-                    title: "Google+"
-                },
-                "linkedin": {
-                    name: "linkedin",
-                    link: "//www.linkedin.com/shareArticle?mini=true&url={url}&title={title}",
-                    width: 600,
-                    height: 400,
-                    title: "LinkedIn"
-                },
-                "pinterest": {
-                    name: "pinterest",
-                    link: "//pinterest.com/pin/create/button/?url={url}&media={image}&description={title}",
-                    width: 600,
-                    height: 300,
-                    title: "Pinterest"
-                }
-            },
-            enabledProviders: [],
+    $.fn.simpleShare = function (opt) {
+
+        opt = $.extend(true, {
+            providers: providers,
+            url: window.location.href.replace(window.location.hash, ''),
+            title: (document.title || ''),
+            image: '',
+            enabledProviders: ['facebook', 'twitter', 'vk'],
             wrapperTemplate: '{buttons}',
-            buttonTemplate: '<a href="#" title="{title}" class="icon-{name}" onclick="{onclick}"></a>',
+            buttonTemplate: '<span title="{title}" class="icon-{name}" onclick="{onclick}"></span>',
             onclickTemplate: "window.open('{link}','_blank','scrollbars=0,resizable=1,menubar=0,left=100,top=100,width={width},height={height},toolbar=0,status=0');return false;",
             removeContainer: false,
-            windowWidth: 550,
-            windowHeight: 440
-        }, o || {});
+            popupWidth: 550,
+            popupHeight: 440
+        }, opt || {});
 
         return this.each(function () {
 
-            var $el = $(this),
-                url = $el.attr('data-url'),
-                title = $el.attr('data-title'),
-                img = $el.attr('data-image'),
-                dsc = $el.attr('data-description');
-
-            if (!url) url = location.href;
-            if (!title) title = document.title;
-            if (!dsc) {
-                var meta = $('meta[name="description"]').attr('content');
-                if (meta !== undefined) dsc = meta;
-                else dsc = '';
-            }
-
-            url = encodeURIComponent(url);
-            title = encodeURIComponent(title);
-            title = title.replace(/\'/g, '%27');
-            img = encodeURIComponent(img);
-            dsc = encodeURIComponent(dsc);
-            dsc = dsc.replace(/\'/g, '%27');
-
-            var fbParams = 'u=' + url;
-            if (img != 'null' && img != '') {
-                fbParams = 's=100&p[url]=' + url + '&p[title]=' + title + '&p[summary]=' + dsc + '&p[images][0]=' + img;
-            }
-            var vkParams = '';
-            if (img != 'null' && img != '') {
-                vkParams = '&image=' + img;
-            }
-
-            var j, link, onclick, wWidth, wHeight, pTitle;
-            var providers = [];
-            var html = '';
+            var $el = $(this), options = $.extend(true, opt, dataToOptions($el));
+            var j, link, onclick, wWidth, wHeight, pTitle, providers = [], html = '';
 
             // sort and disable
-            if (o.enabledProviders.length) {
-                for (j = 0; j < o.enabledProviders.length; j++) {
-                    if (!o.providers.hasOwnProperty(o.enabledProviders[j])) continue;
-                    if (!o.providers[o.enabledProviders[j]].hasOwnProperty('name')) continue;
-                    if (!o.providers[o.enabledProviders[j]].hasOwnProperty('link')) continue;
-                    if (o.enabledProviders[j] != o.providers[o.enabledProviders[j]].name) continue;
-                    providers.push(o.providers[o.enabledProviders[j]]);
+            if (options.enabledProviders.length) {
+                for (j = 0; j < options.enabledProviders.length; j++) {
+                    if (!options.providers.hasOwnProperty(options.enabledProviders[j])) continue;
+                    if (!options.providers[options.enabledProviders[j]].hasOwnProperty('name')) continue;
+                    if (!options.providers[options.enabledProviders[j]].hasOwnProperty('link')) continue;
+                    if (options.enabledProviders[j] != options.providers[options.enabledProviders[j]].name) continue;
+                    providers.push(options.providers[options.enabledProviders[j]]);
                 }
             } else {
-                for (j in o.providers) {
-                    if (!o.providers.hasOwnProperty(j)) continue;
-                    if (!o.providers[j].hasOwnProperty('name') || !o.providers[j].hasOwnProperty('link')) continue;
-                    providers.push(o.providers[j]);
+                for (j in options.providers) {
+                    if (!options.providers.hasOwnProperty(j)) continue;
+                    if (!options.providers[j].hasOwnProperty('name') || !options.providers[j].hasOwnProperty('link')) continue;
+                    providers.push(options.providers[j]);
                 }
             }
 
+            // add buttons
             for (j = 0; j < providers.length; j++) {
-                // add button
-                link = str_replace(
-                    ['{url}', '{title}', '{description}', '{image}', '{fbParams}', '{vkParams}'],
-                    [url, title, dsc, img, fbParams, vkParams],
-                    providers[j].link
-                );
-                wWidth = providers[j].hasOwnProperty('width') ? providers[j].width : o.windowWidth;
-                wHeight = providers[j].hasOwnProperty('width') ? providers[j].height : o.windowHeight;
-                pTitle = providers[j].hasOwnProperty('title') ? providers[j].title : "";
-                onclick = str_replace(['{link}', '{width}', '{height}'], [link, wWidth, wHeight], o.onclickTemplate);
-                html += str_replace(['{title}', '{name}', '{onclick}'], [pTitle, providers[j].name, onclick], o.buttonTemplate);
+                if (!('link' in providers[j]) || !('name' in providers[j])) continue;
+                // pinterest must have not-empty media param
+                if (providers[j].name == 'pinterest' && !options.image) continue;
+                link = makeUrl(providers[j].link, {'url': options.url, 'title': options.title, 'image': options.image});
+                wWidth = ('width' in providers[j]) ? providers[j].width : options.popupWidth;
+                wHeight = ('height' in providers[j]) ? providers[j].height : options.popupHeight;
+                pTitle = ('title' in providers[j]) ? providers[j].title : '';
+                onclick = template(options.onclickTemplate, {'link': link, 'width': wWidth, 'height': wHeight});
+                html += template(options.buttonTemplate, {'title': pTitle, 'name': providers[j].name, 'onclick': onclick});
             }
 
-            if (o.removeContainer) {
-                $el.replaceWith(str_replace('{buttons}', html, o.wrapperTemplate));
+            if (options.removeContainer) {
+                $el.replaceWith(template(options.wrapperTemplate, {'buttons': html}));
             } else {
-                $el.html(str_replace('{buttons}', html, o.wrapperTemplate));
+                $el.html(template(options.wrapperTemplate, {'buttons': html}));
             }
-
-            // A JavaScript equivalent of PHP's str_replace
-            function str_replace(search, replace, subject, count) {
-                var i = 0, j = 0, temp = '', repl = '', sl = 0, fl = 0,
-                    f = [].concat(search), r = [].concat(replace), s = subject,
-                    ra = Object.prototype.toString.call(r) === '[object Array]',
-                    sa = Object.prototype.toString.call(s) === '[object Array]';
-                s = [].concat(s);
-                if (count) {
-                    this.window[count] = 0;
-                }
-                for (i = 0, sl = s.length; i < sl; i++) {
-                    if (s[i] === '') continue;
-                    for (j = 0, fl = f.length; j < fl; j++) {
-                        temp = s[i] + '';
-                        repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
-                        s[i] = (temp).split(f[j]).join(repl);
-                        if (count && s[i] !== temp) {
-                            this.window[count] += (temp.length - s[i].length) / f[j].length;
-                        }
-                    }
-                }
-                return sa ? s : s[0];
-            }
-
         });
     };
+
+    // Camelize data-attributes
+    function dataToOptions(elem) {
+        function upper(m, l) {
+            return l.toUpper();
+        }
+
+        var options = {};
+        var data = elem.data();
+        for (var key in data) {
+            if (!data.hasOwnProperty(key)) continue;
+            var value = data[key];
+            if (value === 'yes') {
+                value = true;
+            }
+            else if (value === 'no') {
+                value = false;
+            }
+            options[key.replace(/-(\w)/g, upper)] = value;
+        }
+        return options;
+    }
+
+    function makeUrl(url, context) {
+        return template(url, context, encodeURIComponent);
+    }
+
+    function template(tmpl, context, filter) {
+        return tmpl.replace(/\{([^}]+)\}/g, function (m, key) {
+            // If key doesn't exists in the context we should keep template tag as is
+            return key in context ? (filter ? filter(context[key]) : context[key]) : m;
+        });
+    }
+
 })(jQuery);
