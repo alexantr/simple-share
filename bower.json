@@ -1,0 +1,25 @@
+{
+  "name": "simple-share",
+  "main": "simple-share.js",
+  "homepage": "https://github.com/alexantr/simple-share",
+  "authors": [
+    "Alex Yashkin <alex.yashkin@gmail.com>"
+  ],
+  "description": "Simple Share Buttons for Your Site",
+  "keywords": [
+    "social",
+    "share",
+    "jquery"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": ">=1.8.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
