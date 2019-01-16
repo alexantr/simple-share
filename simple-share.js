@@ -72,6 +72,10 @@
                 options.enabledProviders = ['facebook', 'twitter', 'vk'];
             }
 
+            if (typeof options.enabledProviders === 'string') {
+                options.enabledProviders = options.enabledProviders.split(/\s*,\s*/);
+            }
+
             // sort and disable
             for (j = 0; j < options.enabledProviders.length; j++) {
                 if (options.enabledProviders[j] in options.providers) {
@@ -81,9 +85,11 @@
 
             // add buttons
             for (j = 0; j < providers.length; j++) {
-                if (!('link' in providers[j]) || !('name' in providers[j])) continue;
+                if (!('link' in providers[j]) || !('name' in providers[j]))
+                    continue;
                 // pinterest must have not-empty media param
-                if (providers[j].name == 'pinterest' && !options.image) continue;
+                if (providers[j].name === 'pinterest' && !options.image)
+                    continue;
                 link = makeUrl(providers[j].link, {'url': options.url, 'title': options.title, 'image': options.image});
                 wWidth = ('width' in providers[j]) ? providers[j].width : options.popupWidth;
                 wHeight = ('height' in providers[j]) ? providers[j].height : options.popupHeight;
@@ -109,12 +115,13 @@
         var options = {};
         var data = elem.data();
         for (var key in data) {
-            if (!data.hasOwnProperty(key)) continue;
+            if (!data.hasOwnProperty(key))
+                continue;
             var value = data[key];
-            if (value === 'yes') {
+            if (value === 'yes' || value === 'true') {
                 value = true;
             }
-            else if (value === 'no') {
+            else if (value === 'no' || value === 'false') {
                 value = false;
             }
             options[key.replace(/-(\w)/g, upper)] = value;
@@ -127,7 +134,7 @@
     }
 
     function template(tmpl, context, filter) {
-        return tmpl.replace(/\{([^}]+)\}/g, function (m, key) {
+        return tmpl.replace(/{([^}]+)}/g, function (m, key) {
             // If key doesn't exists in the context we should keep template tag as is
             return key in context ? (filter ? filter(context[key]) : context[key]) : m;
         });
