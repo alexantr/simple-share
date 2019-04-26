@@ -19,8 +19,6 @@
         .title-icon { color: #c03e33; }
         h3:target { color: #c03e33; }
         .hl1 { color: #a31515; }
-        .hl2 { color: #00f; }
-        .hl3 { color: #008000; }
     </style>
 
     <meta property="og:type" content="website">
@@ -48,62 +46,62 @@
 
     <!-- EXAMPLE #1 -->
 
-    <h3 id="ex1">Example #1 - Basic usage <small><a href="#ex1">#</a></small></h3>
+    <h3 id="ex-basic">Basic usage <small><a href="#ex-basic">#</a></small></h3>
 
     <p><em>Note:</em> Only <strong>Facebook</strong>, <strong>VKontakte</strong> and <strong>Twitter</strong> are enabled by default.</p>
 
     <p><strong>HTML:</strong></p>
     <pre>&lt;script src=<span class="hl1">&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;</span>&gt;&lt;/script&gt;
-&lt;script src=<span class="hl1">&quot;js/simple-share.min.js&quot;</span>&gt;&lt;/script&gt;</pre>
+&lt;script src=<span class="hl1">&quot;simple-share.min.js&quot;</span>&gt;&lt;/script&gt;</pre>
 
     <p><strong>HTML:</strong></p>
-    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-1&quot;</span>&gt;&lt;/div&gt;</pre>
+    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-basic&quot;</span>&gt;&lt;/div&gt;</pre>
 
     <p><strong>JavaScript:</strong></p>
-    <pre>$(<span class="hl1">&quot;.simple-share.example-1&quot;</span>).simpleShare();</pre>
+    <pre>$(<span class="hl1">&quot;.simple-share.example-basic&quot;</span>).simpleShare();</pre>
 
     <p><strong>Result:</strong></p>
-    <div class="simple-share example-1"></div>
+    <div class="simple-share example-basic"></div>
 
     <hr>
 
     <!-- EXAMPLE #2 -->
 
-    <h3 id="ex2">Example #2 - Sorting and disabling <small><a href="#ex2">#</a></small></h3>
+    <h3 id="ex-custom">Sorting and disabling <small><a href="#ex-custom">#</a></small></h3>
 
     <p><strong>HTML:</strong></p>
-    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-2&quot;</span>&gt;&lt;/div&gt;</pre>
+    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-custom&quot;</span>&gt;&lt;/div&gt;</pre>
 
     <p><strong>JavaScript:</strong></p>
-    <pre>$(<span class="hl1">&quot;.simple-share.example-2&quot;</span>).simpleShare({
+    <pre>$(<span class="hl1">&quot;.simple-share.example-custom&quot;</span>).simpleShare({
     enabledProviders: [<span class="hl1">&quot;vkontakte&quot;</span>, <span class="hl1">&quot;facebook&quot;</span>, <span class="hl1">&quot;linkedin&quot;</span>, <span class="hl1">&quot;telegram&quot;</span>]
 });</pre>
 
     <p><strong>Result:</strong></p>
-    <div class="simple-share example-2"></div>
+    <div class="simple-share example-custom"></div>
 
     <hr>
 
     <!-- EXAMPLE #3 -->
 
-    <h3 id="ex3">Example #3 - All providers <small><a href="#ex3">#</a></small></h3>
+    <h3 id="ex-all">All providers <small><a href="#ex-all">#</a></small></h3>
 
     <p><strong>HTML:</strong></p>
-    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-3&quot;</span>&gt;&lt;/div&gt;</pre>
+    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-all&quot;</span>&gt;&lt;/div&gt;</pre>
 
     <p><strong>JavaScript:</strong></p>
-    <pre>$(<span class="hl1">&quot;.simple-share.example-3&quot;</span>).simpleShare({
+    <pre>$(<span class="hl1">&quot;.simple-share.example-all&quot;</span>).simpleShare({
     enabledProviders: <span class="hl1">&quot;*&quot;</span>
 });</pre>
 
     <p><strong>Result:</strong></p>
-    <div class="simple-share example-3"></div>
+    <div class="simple-share example-all"></div>
 
     <hr>
 
     <!-- DATA EXAMPLE -->
 
-    <h3 id="ex5">Using data-* attributes <small><a href="#ex5">#</a></small></h3>
+    <h3 id="ex-pinterest">Using data-* attributes <small><a href="#ex-pinterest">#</a></small></h3>
 
     <p>Use data-* attributes <code>data-url</code>, <code>data-title</code> and <code>data-image</code>:</p>
     <pre>&lt;div class=<span class="hl1">&quot;simple-share&quot;</span> data-url=<span class="hl1">&quot;http://example.com/&quot;</span> data-title=<span class="hl1">&quot;Example Title&quot;</span> data-image=<span class="hl1">&quot;http://example.com/image.jpg&quot;</span>&gt;&lt;/div&gt;</pre>
@@ -111,32 +109,32 @@
     <p><em>Note:</em> <code>data-image</code> is <strong>required</strong> for Pinterest:</p>
 
     <p><strong>HTML:</strong></p>
-    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-5&quot;</span> data-image=<span class="hl1">&quot;https://yashkin.by/simple-share/images/simple-share.png&quot;</span>&gt;&lt;/div&gt;</pre>
+    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-pinterest&quot;</span> data-image=<span class="hl1">&quot;https://yashkin.by/simple-share/images/simple-share.png&quot;</span>&gt;&lt;/div&gt;</pre>
 
     <p><strong>JavaScript:</strong></p>
-    <pre>$(<span class="hl1">&quot;.simple-share.example-5&quot;</span>).simpleShare({
+    <pre>$(<span class="hl1">&quot;.simple-share.example-pinterest&quot;</span>).simpleShare({
     enabledProviders: [<span class="hl1">&quot;pinterest&quot;</span>]
 });</pre>
 
     <p><strong>Result:</strong></p>
-    <div class="simple-share example-5" data-image="https://yashkin.by/simple-share/images/simple-share.png"></div>
+    <div class="simple-share example-pinterest" data-image="https://yashkin.by/simple-share/images/simple-share.png"></div>
 
     <hr>
 
-    <h3 id="ex6">Providers in data-enabled-providers <small><a href="#ex6">#</a></small></h3>
+    <h3 id="ex-data">Providers in data-enabled-providers <small><a href="#ex-data">#</a></small></h3>
 
     <p>Use <code>data-enabled-providers</code> with providers separated by comma:</p>
 
     <p><strong>HTML:</strong></p>
-    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-6&quot;</span> data-enabled-providers=<span class="hl1">&quot;facebook,vkontakte,linkedin&quot;</span>&gt;&lt;/div&gt;
-&lt;div class=<span class="hl1">&quot;simple-share example-6&quot;</span> data-enabled-providers=<span class="hl1">&quot;*&quot;</span>&gt;&lt;/div&gt;</pre>
+    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-providers&quot;</span> data-enabled-providers=<span class="hl1">&quot;telegram,viber,whatsapp,skype&quot;</span>&gt;&lt;/div&gt;
+&lt;div class=<span class="hl1">&quot;simple-share example-data&quot;</span> data-enabled-providers=<span class="hl1">&quot;*&quot;</span>&gt;&lt;/div&gt;</pre>
 
     <p><strong>JavaScript:</strong></p>
-    <pre>$(<span class="hl1">&quot;.simple-share.example-6&quot;</span>).simpleShare();</pre>
+    <pre>$(<span class="hl1">&quot;.simple-share.example-data&quot;</span>).simpleShare();</pre>
 
     <p><strong>Result:</strong></p>
-    <div class="simple-share example-6" data-enabled-providers="facebook,vkontakte,linkedin"></div>
-    <div class="simple-share example-6" data-enabled-providers="*" style="margin-top: 0.5em"></div>
+    <div class="simple-share example-data" data-enabled-providers="telegram,viber,whatsapp,skype"></div>
+    <div class="simple-share example-data" data-enabled-providers="*" style="margin-top: 0.5em"></div>
 
     <hr>
 
@@ -158,21 +156,21 @@
     jQuery(function ($) {
         "use strict";
 
-        $(".simple-share.example-1").simpleShare();
+        $(".simple-share.example-basic").simpleShare();
 
-        $(".simple-share.example-2").simpleShare({
+        $(".simple-share.example-custom").simpleShare({
             enabledProviders: ["vkontakte", "facebook", "linkedin", "telegram"]
         });
 
-        $(".simple-share.example-3").simpleShare({
+        $(".simple-share.example-all").simpleShare({
             enabledProviders: "*"
         });
 
-        $(".simple-share.example-5").simpleShare({
+        $(".simple-share.example-pinterest").simpleShare({
             enabledProviders: ["pinterest"]
         });
 
-        $(".simple-share.example-6").simpleShare();
+        $(".simple-share.example-data").simpleShare();
 
     });
 </script>
