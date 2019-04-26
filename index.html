@@ -15,10 +15,37 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
-        body { padding-top: 20px; padding-bottom: 20px; }
-        .title-icon { color: #c03e33; }
-        h3:target { color: #c03e33; }
-        .hl1 { color: #a31515; }
+        body {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .title-icon {
+            color: #c03e33;
+        }
+        h3:target {
+            color: #c03e33;
+        }
+        .simple-share2 {
+            margin-bottom: 1em;
+        }
+        /* example */
+        .example-custom {
+            margin-bottom: 10px;
+        }
+        .example-custom a {
+            display: inline-block;
+            margin-right: 5px;
+            padding: 5px;
+            border-radius: 50%;
+        }
+        .example-custom a:hover,
+        .example-custom a:focus {
+            opacity: 0.9;
+        }
+        .example-custom img {
+            width: 30px;
+            height: 30px;
+        }
     </style>
 
     <meta property="og:type" content="website">
@@ -48,37 +75,27 @@
 
     <h3 id="ex-basic">Basic usage <small><a href="#ex-basic">#</a></small></h3>
 
-    <p><em>Note:</em> Only <strong>Facebook</strong>, <strong>VKontakte</strong> and <strong>Twitter</strong> are enabled by default.</p>
-
     <p><strong>HTML:</strong></p>
-    <pre>&lt;script src=<span class="hl1">&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;</span>&gt;&lt;/script&gt;
-&lt;script src=<span class="hl1">&quot;simple-share.min.js&quot;</span>&gt;&lt;/script&gt;</pre>
-
-    <p><strong>HTML:</strong></p>
-    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-basic&quot;</span>&gt;&lt;/div&gt;</pre>
-
-    <p><strong>JavaScript:</strong></p>
-    <pre>$(<span class="hl1">&quot;.simple-share.example-basic&quot;</span>).simpleShare();</pre>
+    <pre>&lt;script src="https://code.jquery.com/jquery-3.3.1.min.js"&gt;&lt;/script&gt;
+&lt;script src="simple-share.min.js"&gt;&lt;/script&gt;
+&lt;div class="simple-share2"&gt;&lt;/div&gt;</pre>
 
     <p><strong>Result:</strong></p>
-    <div class="simple-share example-basic"></div>
+    <div class="simple-share2"></div>
+
+    <p>Note: only <strong>Facebook</strong>, <strong>VKontakte</strong> and <strong>Twitter</strong> are enabled by default.</p>
 
     <hr>
 
     <!-- EXAMPLE #2 -->
 
-    <h3 id="ex-custom">Sorting and disabling <small><a href="#ex-custom">#</a></small></h3>
+    <h3 id="ex-custom">Configure providers <small><a href="#ex-custom">#</a></small></h3>
 
     <p><strong>HTML:</strong></p>
-    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-custom&quot;</span>&gt;&lt;/div&gt;</pre>
-
-    <p><strong>JavaScript:</strong></p>
-    <pre>$(<span class="hl1">&quot;.simple-share.example-custom&quot;</span>).simpleShare({
-    enabledProviders: [<span class="hl1">&quot;vkontakte&quot;</span>, <span class="hl1">&quot;facebook&quot;</span>, <span class="hl1">&quot;linkedin&quot;</span>, <span class="hl1">&quot;telegram&quot;</span>]
-});</pre>
+    <pre>&lt;div class="simple-share2" data-providers="facebook,linkedin,telegram,viber,whatsapp,skype"&gt;&lt;/div&gt;</pre>
 
     <p><strong>Result:</strong></p>
-    <div class="simple-share example-custom"></div>
+    <div class="simple-share2" data-providers="facebook,linkedin,telegram,viber,whatsapp,skype"></div>
 
     <hr>
 
@@ -87,54 +104,73 @@
     <h3 id="ex-all">All providers <small><a href="#ex-all">#</a></small></h3>
 
     <p><strong>HTML:</strong></p>
-    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-all&quot;</span>&gt;&lt;/div&gt;</pre>
-
-    <p><strong>JavaScript:</strong></p>
-    <pre>$(<span class="hl1">&quot;.simple-share.example-all&quot;</span>).simpleShare({
-    enabledProviders: <span class="hl1">&quot;*&quot;</span>
-});</pre>
+    <pre>&lt;div class="simple-share2" data-providers="*"&gt;&lt;/div&gt;</pre>
 
     <p><strong>Result:</strong></p>
-    <div class="simple-share example-all"></div>
+    <div class="simple-share2" data-providers="*"></div>
 
     <hr>
 
     <!-- DATA EXAMPLE -->
 
-    <h3 id="ex-pinterest">Using data-* attributes <small><a href="#ex-pinterest">#</a></small></h3>
+    <h3 id="ex-attributes">Additional attributes <small><a href="#ex-attributes">#</a></small></h3>
 
-    <p>Use data-* attributes <code>data-url</code>, <code>data-title</code> and <code>data-image</code>:</p>
-    <pre>&lt;div class=<span class="hl1">&quot;simple-share&quot;</span> data-url=<span class="hl1">&quot;http://example.com/&quot;</span> data-title=<span class="hl1">&quot;Example Title&quot;</span> data-image=<span class="hl1">&quot;http://example.com/image.jpg&quot;</span>&gt;&lt;/div&gt;</pre>
+    <p>Use attributes <code>data-url</code>, <code>data-title</code> and <code>data-image</code> to configure share message:</p>
+    <pre>&lt;div class="simple-share2" data-url="http://example.com/" data-title="Example Title" data-image="http://example.com/image.jpg"&gt;&lt;/div&gt;</pre>
 
-    <p><em>Note:</em> <code>data-image</code> is <strong>required</strong> for Pinterest:</p>
+    <p>By default plugin uses <strong>title</strong> from "og:title" or document.title, <strong>url</strong> from window.location.href and <strong>image</strong> from "og:image".</p>
+
+    <p>Note: <code>data-image</code> is <strong>required</strong> for Pinterest if meta "og:image" is not set.</p>
 
     <p><strong>HTML:</strong></p>
-    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-pinterest&quot;</span> data-image=<span class="hl1">&quot;https://yashkin.by/simple-share/images/simple-share.png&quot;</span>&gt;&lt;/div&gt;</pre>
-
-    <p><strong>JavaScript:</strong></p>
-    <pre>$(<span class="hl1">&quot;.simple-share.example-pinterest&quot;</span>).simpleShare({
-    enabledProviders: [<span class="hl1">&quot;pinterest&quot;</span>]
-});</pre>
+    <pre>&lt;div class="simple-share2" data-providers="pinterest" data-image="https://yashkin.by/simple-share/images/simple-share.png"&gt;&lt;/div&gt;</pre>
 
     <p><strong>Result:</strong></p>
-    <div class="simple-share example-pinterest" data-image="https://yashkin.by/simple-share/images/simple-share.png"></div>
+    <div class="simple-share2" data-providers="pinterest" data-image="https://yashkin.by/simple-share/images/simple-share.png"></div>
 
     <hr>
 
-    <h3 id="ex-data">Providers in data-enabled-providers <small><a href="#ex-data">#</a></small></h3>
+    <!-- OPTIONS EXAMPLE -->
 
-    <p>Use <code>data-enabled-providers</code> with providers separated by comma:</p>
+    <h3 id="ex-options">Manual initialization and plugin options <small><a href="#ex-options">#</a></small></h3>
 
-    <p><strong>HTML:</strong></p>
-    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-providers&quot;</span> data-enabled-providers=<span class="hl1">&quot;telegram,viber,whatsapp,skype&quot;</span>&gt;&lt;/div&gt;
-&lt;div class=<span class="hl1">&quot;simple-share example-data&quot;</span> data-enabled-providers=<span class="hl1">&quot;*&quot;</span>&gt;&lt;/div&gt;</pre>
+    <pre>&lt;div class="example-custom"&gt;&lt;/div&gt;</pre>
+    <pre>&lt;div class="example-custom" data-providers="viber,telegram"&gt;&lt;/div&gt;</pre>
+    <p>Note: data-* attributes have higher priority.</p>
 
     <p><strong>JavaScript:</strong></p>
-    <pre>$(<span class="hl1">&quot;.simple-share.example-data&quot;</span>).simpleShare();</pre>
+    <pre>$('.example-custom').simpleShare2({
+    providers: 'vkontakte,facebook,pinterest',
+    styled: false,
+    image: 'https://yashkin.by/simple-share/images/simple-share.png',
+    url: 'https://yashkin.by/simple-share/',
+    title: 'Simple Share'
+});</pre>
+
+    <p>Note: option "styled" with <code>false</code> disables built-in CSS. You must set own styles.</p>
+
+    <p><strong>CSS</strong>:</p>
+    <pre>.example-custom {
+    margin-bottom: 10px;
+}
+.example-custom a {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 5px;
+    border-radius: 50%;
+}
+.example-custom a:hover,
+.example-custom a:focus {
+    opacity: 0.9;
+}
+.example-custom img {
+    width: 30px;
+    height: 30px;
+}</pre>
 
     <p><strong>Result:</strong></p>
-    <div class="simple-share example-data" data-enabled-providers="telegram,viber,whatsapp,skype"></div>
-    <div class="simple-share example-data" data-enabled-providers="*" style="margin-top: 0.5em"></div>
+    <div class="example-custom"></div>
+    <div class="example-custom" data-providers="viber,telegram"></div>
 
     <hr>
 
@@ -156,22 +192,13 @@
     jQuery(function ($) {
         "use strict";
 
-        $(".simple-share.example-basic").simpleShare();
-
-        $(".simple-share.example-custom").simpleShare({
-            enabledProviders: ["vkontakte", "facebook", "linkedin", "telegram"]
+        $('.example-custom').simpleShare2({
+            providers: 'vkontakte,facebook,pinterest',
+            styled: false,
+            image: 'https://yashkin.by/simple-share/images/simple-share.png',
+            url: 'https://yashkin.by/simple-share/',
+            title: 'Simple Share'
         });
-
-        $(".simple-share.example-all").simpleShare({
-            enabledProviders: "*"
-        });
-
-        $(".simple-share.example-pinterest").simpleShare({
-            enabledProviders: ["pinterest"]
-        });
-
-        $(".simple-share.example-data").simpleShare();
-
     });
 </script>
 
