@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Simple Share</title>
+    <meta name="description" content="Simple Share Buttons for Your Site">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        body { padding-top: 20px; padding-bottom: 20px; }
+        .title-icon { color: #c03e33; }
+        h3:target { color: #c03e33; }
+        .hl1 { color: #a31515; }
+        .hl2 { color: #00f; }
+        .hl3 { color: #008000; }
+    </style>
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Simple Share">
+    <meta property="og:url" content="https://yashkin.by/simple-share/">
+    <meta property="og:title" content="Simple Share">
+    <meta property="og:description" content="Simple Share Buttons for Your Site">
+    <meta property="og:image" content="https://yashkin.by/simple-share/images/simple-share.png">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="jumbotron">
+        <h1><i class="icon-share-square title-icon"></i> Simple Share</h1>
+        <p>Simple Share Buttons for Your Site</p>
+        <p>
+            <a class="btn btn-default" href="https://github.com/alexantr/simple-share"><i class="icon-github"></i> GitHub</a>
+            <a class="btn btn-primary" href="https://github.com/alexantr/simple-share/releases/latest"><i class="icon-download"></i> Download simple-share.js</a>
+        </p>
+        <div class="text-muted">Current version: <strong>2.0</strong></div>
+    </div>
+
+    <h2>Examples</h2>
+
+    <!-- EXAMPLE #1 -->
+
+    <h3 id="ex1">Example #1 - Basic usage <small><a href="#ex1">#</a></small></h3>
+
+    <p><em>Note:</em> Only <strong>Facebook</strong>, <strong>VKontakte</strong> and <strong>Twitter</strong> are enabled by default.</p>
+
+    <p><strong>HTML:</strong></p>
+    <pre>&lt;script src=<span class="hl1">&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;</span>&gt;&lt;/script&gt;
+&lt;script src=<span class="hl1">&quot;js/simple-share.min.js&quot;</span>&gt;&lt;/script&gt;</pre>
+
+    <p><strong>HTML:</strong></p>
+    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-1&quot;</span>&gt;&lt;/div&gt;</pre>
+
+    <p><strong>JavaScript:</strong></p>
+    <pre>$(<span class="hl1">&quot;.simple-share.example-1&quot;</span>).simpleShare();</pre>
+
+    <p><strong>Result:</strong></p>
+    <div class="simple-share example-1"></div>
+
+    <hr>
+
+    <!-- EXAMPLE #2 -->
+
+    <h3 id="ex2">Example #2 - Sorting and disabling <small><a href="#ex2">#</a></small></h3>
+
+    <p><strong>HTML:</strong></p>
+    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-2&quot;</span>&gt;&lt;/div&gt;</pre>
+
+    <p><strong>JavaScript:</strong></p>
+    <pre>$(<span class="hl1">&quot;.simple-share.example-2&quot;</span>).simpleShare({
+    enabledProviders: [<span class="hl1">&quot;vkontakte&quot;</span>, <span class="hl1">&quot;facebook&quot;</span>, <span class="hl1">&quot;linkedin&quot;</span>, <span class="hl1">&quot;telegram&quot;</span>]
+});</pre>
+
+    <p><strong>Result:</strong></p>
+    <div class="simple-share example-2"></div>
+
+    <hr>
+
+    <!-- EXAMPLE #3 -->
+
+    <h3 id="ex3">Example #3 - All providers <small><a href="#ex3">#</a></small></h3>
+
+    <p><strong>HTML:</strong></p>
+    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-3&quot;</span>&gt;&lt;/div&gt;</pre>
+
+    <p><strong>JavaScript:</strong></p>
+    <pre>$(<span class="hl1">&quot;.simple-share.example-3&quot;</span>).simpleShare({
+    enabledProviders: <span class="hl1">&quot;*&quot;</span>
+});</pre>
+
+    <p><strong>Result:</strong></p>
+    <div class="simple-share example-3"></div>
+
+    <hr>
+
+    <!-- DATA EXAMPLE -->
+
+    <h3 id="ex5">Using data-* attributes <small><a href="#ex5">#</a></small></h3>
+
+    <p>Use data-* attributes <code>data-url</code>, <code>data-title</code> and <code>data-image</code>:</p>
+    <pre>&lt;div class=<span class="hl1">&quot;simple-share&quot;</span> data-url=<span class="hl1">&quot;http://example.com/&quot;</span> data-title=<span class="hl1">&quot;Example Title&quot;</span> data-image=<span class="hl1">&quot;http://example.com/image.jpg&quot;</span>&gt;&lt;/div&gt;</pre>
+
+    <p><em>Note:</em> <code>data-image</code> is <strong>required</strong> for Pinterest:</p>
+
+    <p><strong>HTML:</strong></p>
+    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-5&quot;</span> data-image=<span class="hl1">&quot;https://yashkin.by/simple-share/images/simple-share.png&quot;</span>&gt;&lt;/div&gt;</pre>
+
+    <p><strong>JavaScript:</strong></p>
+    <pre>$(<span class="hl1">&quot;.simple-share.example-5&quot;</span>).simpleShare({
+    enabledProviders: [<span class="hl1">&quot;pinterest&quot;</span>]
+});</pre>
+
+    <p><strong>Result:</strong></p>
+    <div class="simple-share example-5" data-image="https://yashkin.by/simple-share/images/simple-share.png"></div>
+
+    <hr>
+
+    <h3 id="ex6">Providers in data-enabled-providers <small><a href="#ex6">#</a></small></h3>
+
+    <p>Use <code>data-enabled-providers</code> with providers separated by comma:</p>
+
+    <p><strong>HTML:</strong></p>
+    <pre>&lt;div class=<span class="hl1">&quot;simple-share example-6&quot;</span> data-enabled-providers=<span class="hl1">&quot;facebook,vkontakte,linkedin&quot;</span>&gt;&lt;/div&gt;
+&lt;div class=<span class="hl1">&quot;simple-share example-6&quot;</span> data-enabled-providers=<span class="hl1">&quot;*&quot;</span>&gt;&lt;/div&gt;</pre>
+
+    <p><strong>JavaScript:</strong></p>
+    <pre>$(<span class="hl1">&quot;.simple-share.example-6&quot;</span>).simpleShare();</pre>
+
+    <p><strong>Result:</strong></p>
+    <div class="simple-share example-6" data-enabled-providers="facebook,vkontakte,linkedin"></div>
+    <div class="simple-share example-6" data-enabled-providers="*" style="margin-top: 0.5em"></div>
+
+    <hr>
+
+    <p><i class="icon-share-square title-icon"></i> <strong>Simple Share</strong></p>
+    <p>Simple Share Buttons for Your Site</p>
+    <p>
+        <a href="https://github.com/alexantr/simple-share"><i class="icon-github"></i> GitHub</a>
+        &nbsp;
+        <a href="https://github.com/alexantr/simple-share/releases/latest"><i class="icon-download"></i> Download simple-share.js</a>
+        <!--&nbsp;-->
+        <!--<a href="simple-share-icons.zip" download><i class="icon-download"></i> Download Icons</a>-->
+    </p>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="simple-share.min.js?20190426"></script>
+<script>
+    jQuery(function ($) {
+        "use strict";
+
+        $(".simple-share.example-1").simpleShare();
+
+        $(".simple-share.example-2").simpleShare({
+            enabledProviders: ["vkontakte", "facebook", "linkedin", "telegram"]
+        });
+
+        $(".simple-share.example-3").simpleShare({
+            enabledProviders: "*"
+        });
+
+        $(".simple-share.example-5").simpleShare({
+            enabledProviders: ["pinterest"]
+        });
+
+        $(".simple-share.example-6").simpleShare();
+
+    });
+</script>
+
+</body>
+</html>
