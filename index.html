@@ -175,6 +175,25 @@
 
     <hr>
 
+    <!-- SKIP EXAMPLE -->
+
+    <h3 id="ex-skip">Manual initialization with default class <small><a href="#ex-skip">#</a></small></h3>
+
+    <p>Add <code>data-skip-auto</code> attribute to disabled auto initialization:</p>
+
+    <pre>&lt;div class="simple-share2" data-skip-auto&gt;Waiting...&lt;/div&gt;</pre>
+
+    <p><strong>JavaScript:</strong></p>
+    <pre>$('#load-share').on('click', function () {
+    $('.simple-share2').simpleShare2();
+});</pre>
+
+    <p><strong>Result:</strong></p>
+    <p><button class="btn btn-sm btn-default" id="load-share">Load share buttons</button></p>
+    <div class="simple-share2" data-skip-auto>Waiting...</div>
+
+    <hr>
+
     <p><i class="fas fa-share-alt-square title-icon"></i> <strong>Simple Share 2</strong></p>
     <p>Simple Share Buttons for Your Site</p>
     <p>
@@ -197,6 +216,11 @@
             image: 'https://yashkin.by/simple-share/images/simple-share.png',
             url: 'https://yashkin.by/simple-share/',
             title: 'Simple Share 2'
+        });
+
+        $('#load-share').on('click', function () {
+            $(this).prop('disabled', true);
+            $('.simple-share2').simpleShare2();
         });
     });
 </script>

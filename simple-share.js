@@ -106,8 +106,14 @@
 
         return this.each(function () {
 
-            var $el = $(this), options = $.extend(true, opt, dataToOptions($el));
-            var j, currentProviders = [];
+            var $el = $(this);
+            if ($el.data('initialized')) {
+                return;
+            }
+            $el.data('initialized', true);
+
+            var options = $.extend(true, opt, dataToOptions($el)),
+                currentProviders = [];
 
             if (typeof options.providers === 'string') {
                 options.providers = options.providers.split(/\s*,\s*/);
@@ -124,9 +130,9 @@
                 }
             } else {
                 // sort and disable
-                for (j = 0; j < options.providers.length; j++) {
-                    if (options.providers[j] in providers) {
-                        currentProviders.push(providers[options.providers[j]]);
+                for (var i = 0; i < options.providers.length; i++) {
+                    if (options.providers[i] in providers) {
+                        currentProviders.push(providers[options.providers[i]]);
                     }
                 }
             }
@@ -144,7 +150,8 @@
             var oImage = options.image || $('meta[property="og:image"]').attr('content') || '';
 
             // add buttons
-            for (j = 0; j < currentProviders.length; j++) {
+            $el.html('');
+            for (var j = 0; j < currentProviders.length; j++) {
                 // pinterest must have not-empty media param
                 if (currentProviders[j].name === 'pinterest' && !oImage) {
                     continue;
@@ -184,7 +191,7 @@
         });
     };
 
-    $('.simple-share2').simpleShare2();
+    $('.simple-share2:not([data-skip-auto])').simpleShare2();
 
     // Camelize data-attributes
     function dataToOptions(elem) {
