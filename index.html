@@ -72,7 +72,7 @@
 
     <h2>Examples</h2>
 
-    <!-- EXAMPLE #1 -->
+    <!-- EXAMPLE -->
 
     <h3 id="ex-basic">Basic usage <small><a href="#ex-basic">#</a></small></h3>
 
@@ -88,26 +88,17 @@
 
     <hr>
 
-    <!-- EXAMPLE #2 -->
+    <!-- EXAMPLE -->
 
     <h3 id="ex-custom">Configure providers <small><a href="#ex-custom">#</a></small></h3>
 
     <p><strong>HTML:</strong></p>
     <pre>&lt;div class="simple-share2" data-providers="facebook,linkedin,telegram,viber,whatsapp,skype"&gt;&lt;/div&gt;</pre>
-
-    <p><strong>Result:</strong></p>
-    <div class="simple-share2" data-providers="facebook,linkedin,telegram,viber,whatsapp,skype"></div>
-
-    <hr>
-
-    <!-- EXAMPLE #3 -->
-
-    <h3 id="ex-all">All providers <small><a href="#ex-all">#</a></small></h3>
-
-    <p><strong>HTML:</strong></p>
+    <p>Enable all providers with <code>*</code></p>
     <pre>&lt;div class="simple-share2" data-providers="*"&gt;&lt;/div&gt;</pre>
 
     <p><strong>Result:</strong></p>
+    <div class="simple-share2" data-providers="facebook,linkedin,telegram,viber,whatsapp,skype"></div>
     <div class="simple-share2" data-providers="*"></div>
 
     <hr>
@@ -185,7 +176,7 @@
 
     <p><strong>JavaScript:</strong></p>
     <pre>$('#load-share').on('click', function () {
-    $('.simple-share2').simpleShare2();
+    $('.simple-share2').simpleShare2(); // also run if loading buttons throw AJAX
 });</pre>
 
     <p><strong>Result:</strong></p>
