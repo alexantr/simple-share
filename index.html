@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Simple Share 2</title>
+    <title>Simple Share</title>
     <meta name="description" content="Simple Share Buttons for Your Site">
 
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
@@ -13,8 +13,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="shortcut icon" href="images/favicon.ico">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/styles/github.min.css">
     <style>
         body {
             padding-top: 20px;
@@ -26,48 +27,43 @@
         h3:target {
             color: #c03e33;
         }
-        .simple-share2 {
+        .simple-share {
             margin-bottom: 1em;
         }
         /* example */
-        .example-custom {
-            margin-bottom: 10px;
-        }
-        .example-custom a {
+        .share-custom a {
             display: inline-block;
             margin-right: 5px;
-            padding: 5px;
-            border-radius: 50%;
+            transition: all .2s;
         }
-        .example-custom a:hover,
-        .example-custom a:focus {
-            opacity: 0.9;
+        .share-custom a:hover,
+        .share-custom a:focus {
+            opacity: 0.8;
         }
-        .example-custom img {
-            width: 30px;
-            height: 30px;
+        .share-custom svg {
+            width: 2rem;
+            height: 2rem;
         }
     </style>
 
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Simple Share 2">
-    <meta property="og:url" content="https://yashkin.by/simple-share/">
-    <meta property="og:title" content="Simple Share 2">
+    <meta property="og:site_name" content="Simple Share">
+    <meta property="og:url" content="https://tmpfiles.xyz/simple-share/">
+    <meta property="og:title" content="Simple Share">
     <meta property="og:description" content="Simple Share Buttons for Your Site">
-    <meta property="og:image" content="https://yashkin.by/simple-share/images/simple-share.png">
+    <meta property="og:image" content="https://tmpfiles.xyz/simple-share/images/simple-share.png">
 </head>
 <body>
 
 <div class="container">
 
     <div class="jumbotron">
-        <h1><i class="fas fa-share-alt-square title-icon"></i> Simple Share 2</h1>
-        <p>Simple Share Buttons for Your Site</p>
+        <h1 class="display-4"><i class="fas fa-share-alt-square title-icon"></i> Simple Share</h1>
+        <p class="lead">Simple Share Buttons for Your Site</p>
         <p>
-            <a class="btn btn-default" href="https://github.com/alexantr/simple-share"><i class="fab fa-github"></i> GitHub</a>
             <a class="btn btn-primary" href="simple-share.min.js" download><i class="fas fa-download"></i> Download simple-share.min.js</a>
+            <a class="btn btn-outline-dark" href="https://github.com/alexantr/simple-share"><i class="fab fa-github"></i> GitHub</a>
         </p>
-        <div class="text-muted">Current version: <strong>2.0-dev</strong></div>
     </div>
 
     <h2>Examples</h2>
@@ -77,14 +73,14 @@
     <h3 id="ex-basic">Basic usage <small><a href="#ex-basic">#</a></small></h3>
 
     <p><strong>HTML:</strong></p>
-    <pre>&lt;script src="https://code.jquery.com/jquery-3.3.1.min.js"&gt;&lt;/script&gt;
+    <pre><code class="html">&lt;script src="https://code.jquery.com/jquery-3.4.1.min.js"&gt;&lt;/script&gt;
 &lt;script src="simple-share.min.js"&gt;&lt;/script&gt;
-&lt;div class="simple-share2"&gt;&lt;/div&gt;</pre>
+&lt;div class="simple-share"&gt;&lt;/div&gt;</code></pre>
 
     <p><strong>Result:</strong></p>
-    <div class="simple-share2"></div>
+    <div class="simple-share"></div>
 
-    <p>Note: only <strong>Facebook</strong>, <strong>VKontakte</strong> and <strong>Twitter</strong> are enabled by default.</p>
+    <p>Note: only <strong>Facebook</strong>, <strong>VKontakte</strong> and <strong>Telegram</strong> are enabled by default.</p>
 
     <hr>
 
@@ -93,13 +89,13 @@
     <h3 id="ex-custom">Configure providers <small><a href="#ex-custom">#</a></small></h3>
 
     <p><strong>HTML:</strong></p>
-    <pre>&lt;div class="simple-share2" data-providers="facebook,linkedin,telegram,viber,whatsapp,skype"&gt;&lt;/div&gt;</pre>
+    <pre><code class="html">&lt;div class="simple-share" data-providers="facebook,linkedin,telegram,viber,whatsapp,skype"&gt;&lt;/div&gt;</code></pre>
     <p>Enable all providers with <code>*</code></p>
-    <pre>&lt;div class="simple-share2" data-providers="*"&gt;&lt;/div&gt;</pre>
+    <pre><code class="html">&lt;div class="simple-share" data-providers="*"&gt;&lt;/div&gt;</code></pre>
 
     <p><strong>Result:</strong></p>
-    <div class="simple-share2" data-providers="facebook,linkedin,telegram,viber,whatsapp,skype"></div>
-    <div class="simple-share2" data-providers="*"></div>
+    <div class="simple-share" data-providers="facebook,linkedin,telegram,viber,whatsapp,skype"></div>
+    <div class="simple-share" data-providers="*"></div>
 
     <hr>
 
@@ -108,17 +104,17 @@
     <h3 id="ex-attributes">Additional attributes <small><a href="#ex-attributes">#</a></small></h3>
 
     <p>Use attributes <code>data-url</code>, <code>data-title</code> and <code>data-image</code> to configure share message:</p>
-    <pre>&lt;div class="simple-share2" data-url="http://example.com/" data-title="Example Title" data-image="http://example.com/image.jpg"&gt;&lt;/div&gt;</pre>
+    <pre><code class="html">&lt;div class="simple-share" data-url="http://example.com/" data-title="Example Title" data-image="http://example.com/image.jpg"&gt;&lt;/div&gt;</code></pre>
 
     <p>By default plugin uses <strong>title</strong> from "og:title" or document.title, <strong>url</strong> from window.location.href and <strong>image</strong> from "og:image".</p>
 
     <p>Note: <code>data-image</code> is <strong>required</strong> for Pinterest if meta "og:image" is not set.</p>
 
     <p><strong>HTML:</strong></p>
-    <pre>&lt;div class="simple-share2" data-providers="pinterest" data-image="https://yashkin.by/simple-share/images/simple-share.png"&gt;&lt;/div&gt;</pre>
+    <pre><code class="html">&lt;div class="simple-share" data-providers="pinterest" data-image="https://tmpfiles.xyz/simple-share/images/simple-share.png"&gt;&lt;/div&gt;</code></pre>
 
     <p><strong>Result:</strong></p>
-    <div class="simple-share2" data-providers="pinterest" data-image="https://yashkin.by/simple-share/images/simple-share.png"></div>
+    <div class="simple-share" data-providers="pinterest" data-image="https://tmpfiles.xyz/simple-share/images/simple-share.png"></div>
 
     <hr>
 
@@ -126,43 +122,41 @@
 
     <h3 id="ex-options">Manual initialization and plugin options <small><a href="#ex-options">#</a></small></h3>
 
-    <pre>&lt;div class="example-custom"&gt;&lt;/div&gt;</pre>
-    <pre>&lt;div class="example-custom" data-providers="viber,telegram"&gt;&lt;/div&gt;</pre>
+    <pre><code class="html">&lt;p class="share-custom"&gt;&lt;/p&gt;</code></pre>
+    <pre><code class="html">&lt;p class="share-custom" data-providers="viber,telegram"&gt;&lt;/p&gt;</code></pre>
     <p>Note: data-* attributes have higher priority.</p>
 
     <p><strong>JavaScript:</strong></p>
-    <pre>$('.example-custom').simpleShare2({
+    <pre><code class="javascript">$('.share-custom').simpleShare({
     providers: 'vkontakte,facebook,pinterest',
     styled: false,
-    image: 'https://yashkin.by/simple-share/images/simple-share.png',
-    url: 'https://yashkin.by/simple-share/',
-    title: 'Simple Share 2'
-});</pre>
+    image: 'https://tmpfiles.xyz/simple-share/images/simple-share.png',
+    url: 'https://tmpfiles.xyz/simple-share/',
+    title: 'Simple Share'
+}).find('a').each(function () {
+    $(this).css({color: $(this).attr('data-color')});
+});</code></pre>
 
     <p>Note: option "styled" with <code>false</code> disables built-in CSS. You must set own styles.</p>
 
     <p><strong>CSS</strong>:</p>
-    <pre>.example-custom {
-    margin-bottom: 10px;
-}
-.example-custom a {
+    <pre><code class="css">.share-custom a {
     display: inline-block;
     margin-right: 5px;
-    padding: 5px;
-    border-radius: 50%;
+    transition: all .2s;
 }
-.example-custom a:hover,
-.example-custom a:focus {
-    opacity: 0.9;
+.share-custom a:hover,
+.share-custom a:focus {
+    opacity: 0.8;
 }
-.example-custom img {
-    width: 30px;
-    height: 30px;
-}</pre>
+.share-custom svg {
+    width: 2rem;
+    height: 2rem;
+}</code></pre>
 
     <p><strong>Result:</strong></p>
-    <div class="example-custom"></div>
-    <div class="example-custom" data-providers="viber,telegram"></div>
+    <p class="share-custom"></p>
+    <p class="share-custom" data-providers="viber,telegram"></p>
 
     <hr>
 
@@ -172,20 +166,20 @@
 
     <p>Add <code>data-skip-auto</code> attribute to disabled auto initialization:</p>
 
-    <pre>&lt;div class="simple-share2" data-skip-auto&gt;Waiting...&lt;/div&gt;</pre>
+    <pre><code class="html">&lt;div class="simple-share" data-skip-auto&gt;Waiting...&lt;/div&gt;</code></pre>
 
     <p><strong>JavaScript:</strong></p>
-    <pre>$('#load-share').on('click', function () {
-    $('.simple-share2').simpleShare2(); // also run if loading buttons throw AJAX
-});</pre>
+    <pre><code class="javascript">$('#load-share').on('click', function () {
+    $('.simple-share').simpleShare(); // also run if loading buttons throw AJAX
+});</code></pre>
 
     <p><strong>Result:</strong></p>
-    <p><button class="btn btn-sm btn-default" id="load-share">Load share buttons</button></p>
-    <div class="simple-share2" data-skip-auto>Waiting...</div>
+    <p><button class="btn btn-sm btn-outline-dark" id="load-share">Load share buttons</button></p>
+    <div class="simple-share" data-skip-auto>Waiting...</div>
 
     <hr>
 
-    <p><i class="fas fa-share-alt-square title-icon"></i> <strong>Simple Share 2</strong></p>
+    <p><i class="fas fa-share-alt-square title-icon"></i> <strong>Simple Share</strong></p>
     <p>Simple Share Buttons for Your Site</p>
     <p>
         <a href="https://github.com/alexantr/simple-share"><i class="fab fa-github"></i> GitHub</a>
@@ -195,23 +189,26 @@
 
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="simple-share.min.js?20190426"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+<script src="simple-share.min.js?20200527"></script>
 <script>
-    jQuery(function ($) {
-        "use strict";
+    hljs.initHighlightingOnLoad();
 
-        $('.example-custom').simpleShare2({
+    jQuery(function ($) {
+        $('.share-custom').simpleShare({
             providers: 'vkontakte,facebook,pinterest',
             styled: false,
-            image: 'https://yashkin.by/simple-share/images/simple-share.png',
-            url: 'https://yashkin.by/simple-share/',
-            title: 'Simple Share 2'
+            image: 'https://tmpfiles.xyz/simple-share/images/simple-share.png',
+            url: 'https://tmpfiles.xyz/simple-share/',
+            title: 'Simple Share'
+        }).find('a').each(function () {
+            $(this).css({color: $(this).attr('data-color')});
         });
 
         $('#load-share').on('click', function () {
             $(this).prop('disabled', true);
-            $('.simple-share2').simpleShare2();
+            $('.simple-share').simpleShare();
         });
     });
 </script>

@@ -2,7 +2,7 @@
 
 Simple Share Buttons for Your Site
 
-**[Usage and examples](http://yashkin.by/simple-share/)**
+**[Usage and examples](https://tmpfiles.xyz/simple-share/)**
 
 ## License
 
