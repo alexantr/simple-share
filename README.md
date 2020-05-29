@@ -1,6 +1,6 @@
 # Simple Share
 
-Simple Share Buttons for Your Site
+Simple share buttons, no counters
 
 **[Usage and examples](https://tmpfiles.xyz/simple-share/)**
 
