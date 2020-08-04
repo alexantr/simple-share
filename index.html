@@ -97,12 +97,12 @@
     <h3 id="ex-custom">Configure providers <small><a href="#ex-custom">#</a></small></h3>
 
     <p><strong>HTML:</strong></p>
-    <pre><code class="html">&lt;div class="simple-share" data-providers="telegram,viber,whatsapp,skype"&gt;&lt;/div&gt;</code></pre>
+    <pre><code class="html">&lt;div class="simple-share" data-providers="telegram,viber,whatsapp,skype,messenger"&gt;&lt;/div&gt;</code></pre>
     <p>Enable all providers with asterisk <code>*</code></p>
     <pre><code class="html">&lt;div class="simple-share" data-providers="*"&gt;&lt;/div&gt;</code></pre>
 
     <p><strong>Result:</strong></p>
-    <div class="simple-share" data-providers="telegram,viber,whatsapp,skype"></div>
+    <div class="simple-share" data-providers="telegram,viber,whatsapp,skype,messenger"></div>
     <div class="simple-share" data-providers="*"></div>
 
     <hr>
@@ -132,7 +132,7 @@
     <h3 id="ex-options">Manual initialization and plugin options <small><a href="#ex-options">#</a></small></h3>
 
     <pre><code class="html">&lt;p class="share-custom"&gt;&lt;/p&gt;</code></pre>
-    <pre><code class="html">&lt;p class="share-custom" data-providers="viber,telegram"&gt;&lt;/p&gt;</code></pre>
+    <pre><code class="html">&lt;p class="share-custom" data-providers="viber,telegram,messenger"&gt;&lt;/p&gt;</code></pre>
     <p><em>Note:</em> <strong>data-</strong> attributes have higher priority.</p>
 
     <p><strong>JavaScript:</strong></p>
@@ -167,7 +167,7 @@
 
     <p><strong>Result:</strong></p>
     <p class="share-custom"></p>
-    <p class="share-custom" data-providers="viber,telegram"></p>
+    <p class="share-custom" data-providers="viber,telegram,messenger"></p>
 
     <hr>
 
@@ -203,7 +203,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
-<script src="simple-share.min.js?20200530"></script>
+<script src="simple-share.min.js?20200804"></script>
 <script>
     hljs.initHighlightingOnLoad();
 
