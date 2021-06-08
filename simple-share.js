@@ -2,7 +2,7 @@
     'use strict';
 
     var css = '.simple-share, .simple-share * { line-height: normal; }\n' +
-        '.simple-share a { display: inline-block; font-size: 1.4rem; text-decoration: none; margin: 0 0.2em 0 0; padding: 0.6rem; border: 0; border-radius: 0.25rem; vertical-align: top; color: #fff; transition: all 0.2s; }\n' +
+        '.simple-share a { display: inline-block; font-size: 1.5em; text-decoration: none; margin: 0 0.2em 0 0; padding: 0.4em; border: 0; border-radius: 0.15em; vertical-align: top; color: #fff; transition: all 0.2s; }\n' +
         '.simple-share a:hover, .simple-share a:focus { opacity: 0.8; color: #fff; }\n' +
         '.simple-share a:active { box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); opacity: 1; }\n' +
         '.simple-share svg { display: block; width: 1em; height: 1em; margin: 0; border: 0; }\n';
